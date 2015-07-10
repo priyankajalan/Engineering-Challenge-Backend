@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scrapper Site</title>
+    <!-- Bootstrap links for CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+ </head>
+  
+  <body>
+    
+    <div class="container" ng-controller="AppCtrl">
+      <h1>List Of MyFitnessPal Foods</h1> 
+      <button class="btn btn-primary" ng-click="scrap()">Scrap Food List</button>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name of Food</th>
+            <th>Eaten By</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- Displaying two input boxes to take user input and save into database -->
+          <tr>
+            <td><input class="form-control" ng-model="food.name" placeholder="Add Food name"></td>
+            <td><input class="form-control" ng-model="food.by" placeholder="Add Company Name"></td>
+            <td><button class="btn btn-primary" ng-click="addfood()">Add Food</button></td>
+          </tr>
+          <!-- Display the food lists from the database -->
+          <tr ng-repeat="food in foodlist">
+            <td>{{food.name}}</td>
+            <td>{{food.by}}</td>
+          </tr>
+          <tbody>
+        
+      </table>
+    </div>
+
+    <!-- Script files required for the web app -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js" type="text/javascript"></script>
+    <script src="controller.js" type="text/javascript"></script> 
+    <script src="scrapper.js" type="text/javascript"></script> 
+  </body>
+</html>
