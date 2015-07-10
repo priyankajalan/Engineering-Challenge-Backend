@@ -3,8 +3,9 @@
 var request = require('request'),
 	cheerio = require('cheerio'),
 	urls = [],
-	nutrition = [];
+	nutritions = [];
 
+//scrapping the list of foods
 request('http://www.myfitnesspal.com/food', function(error, response, body){
 	if(!error && response.statusCode == 200){
 		var $ = cheerio.load(body);
@@ -14,6 +15,22 @@ request('http://www.myfitnesspal.com/food', function(error, response, body){
 			urls.push(url);
 		});
 		
-		console.log(urls);
+		//console.log(urls);
+
+	}
+});
+
+//scrapping the nutritional values
+request('http://www.myfitnesspal.com/food/calories/homemade-chicken-salad-filling-210105188', function(error, response, body){
+	if(!error && response.statusCode == 200){
+		var $ = cheerio.load(body);
+		
+		$('#nutrition-facts td').each(function(){
+			var nutrition = $(this).text();
+			nutritions.push(nutrition);
+		});
+		
+		console.log(nutritions);
+
 	}
 });
